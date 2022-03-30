@@ -29,7 +29,8 @@ def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
   # 以下に回答を記載
-	sports.delete(nil)
+	sports.compact!
+
   # 以下は変更しないで下さい
   p sports
 end
@@ -39,13 +40,13 @@ def q5
   array2 = [1, 5, 8, 10]
 
   # 以下に回答を記載
-	if array1.size === 0 then
+	if array1.empty?
 		p 'true'
 	else
 		p 'false'
-	end	
+	end
 
-	if array2.size === 0 then
+	if array2.empty?
 		p 'true'
 	else
 		p 'false'
@@ -56,10 +57,10 @@ def q6
   numbers1 = [1, 2, 3, 4, 5]
 
   # 以下に回答を記載
-	numbers2 = []
-	numbers1.each do |i|
-		numbers2<<i*10
-	end
+	numbers2=[]
+	numbers1.map{|n|
+	numbers2<<n *10
+}
 	p numbers2
 end
 
@@ -67,7 +68,7 @@ def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-	array = array.map{|n| n.to_i}
+	array.map!(&:to_i)
   # 以下は変更しないで下さい
   p array
 end
@@ -76,8 +77,9 @@ def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-	programming_languages = programming_languages.map{|n| n.capitalize}
-	upper_case_programming_languages = programming_languages.map{|n| n.upcase}
+	upper_case_programming_languages = programming_languages.map(&:upcase)
+	programming_languages.map!(&:capitalize)
+	
   # 以下は変更しないで下さい
   p programming_languages
   p upper_case_programming_languages
@@ -87,8 +89,7 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-	names.each_with_index do |name,i|
-		i = i+1
+	names.each.with_index(1) do |name,i|
 	p "会員No.#{i} #{name}さん"
 	end 
 
@@ -99,7 +100,7 @@ def q10
 
   # 以下に回答を記載
 	foods.each do |food|
-		if food.include?("うに") then
+		if food.include?("うに")
 			p '好物です'
 		else
 			p 'まぁまぁ好きです'
@@ -111,23 +112,13 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-	sports_list = []
-	sports.each do |sports_name|
-		if sports_name.instance_of?(Array) then
-			sports_name.each do |n|
-				sports_list<<n
-			end
-		else
-			sports_list<< sports_name
-		end
-			sports_list = sports_list.uniq
-	end
-
+	sports.flatten!
+	sports.uniq!
 	p 'ユーザーの趣味一覧'
-	sports_list.each_with_index do |sports_item,i|
-		i = i + 1
+	sports.each.with_index(1) do |sports_item,i|
 		p "No#{i} #{sports_item}"
 	end
+
 end
 
 def q12
