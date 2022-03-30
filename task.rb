@@ -40,28 +40,18 @@ def q5
   array2 = [1, 5, 8, 10]
 
   # 以下に回答を記載
-	if array1.empty?
-		p 'true'
-	else
-		p 'false'
-	end
-
-	if array2.empty?
-		p 'true'
-	else
-		p 'false'
-	end
+	p array1.empty?
+	p array2.empty?
 end
 
 def q6
   numbers1 = [1, 2, 3, 4, 5]
 
   # 以下に回答を記載
-	numbers2=[]
-	numbers1.map{|n|
-	numbers2<<n *10
+	numbers1.map!{|n|
+	n * 10
 }
-	p numbers2
+	p numbers1
 end
 
 def q7
@@ -112,8 +102,7 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-	sports.flatten!
-	sports.uniq!
+	sports.flatten!.uniq!
 	p 'ユーザーの趣味一覧'
 	sports.each.with_index(1) do |sports_item,i|
 		p "No#{i} #{sports_item}"
